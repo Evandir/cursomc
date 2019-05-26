@@ -1,41 +1,11 @@
 package com.souza.evandir.cursomc;
 
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.HashSet;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.souza.evandir.cursomc.domain.Categoria;
-import com.souza.evandir.cursomc.domain.Cidade;
-import com.souza.evandir.cursomc.domain.Cliente;
-import com.souza.evandir.cursomc.domain.Endereco;
-import com.souza.evandir.cursomc.domain.Estado;
-import com.souza.evandir.cursomc.domain.ItemPedido;
-import com.souza.evandir.cursomc.domain.Pagamento;
-import com.souza.evandir.cursomc.domain.PagamentoComBoleto;
-import com.souza.evandir.cursomc.domain.PagamentoComCartao;
-import com.souza.evandir.cursomc.domain.Pedido;
-import com.souza.evandir.cursomc.domain.Produto;
-import com.souza.evandir.cursomc.domain.enums.EstadoPagamento;
-import com.souza.evandir.cursomc.domain.enums.TipoCliente;
-import com.souza.evandir.cursomc.repositories.CategoriaRepository;
-import com.souza.evandir.cursomc.repositories.CidadeRepository;
-import com.souza.evandir.cursomc.repositories.ClienteRepository;
-import com.souza.evandir.cursomc.repositories.EnderecoRepository;
-import com.souza.evandir.cursomc.repositories.EstadoRepository;
-import com.souza.evandir.cursomc.repositories.ItemPedidoRepository;
-import com.souza.evandir.cursomc.repositories.PagamentoRepository;
-import com.souza.evandir.cursomc.repositories.PedidoRepository;
-import com.souza.evandir.cursomc.repositories.ProdutoRepository;
-
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
-
-
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
