@@ -23,7 +23,7 @@ public class DevConfig {
 	@Bean
 	public boolean instantiateDatabase() throws ParseException {
 		
-		if (!strategy.equals("crate")) {
+		if (!strategy.equals("create")) {
 			return false;
 		}
 		
