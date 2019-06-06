@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.souza.evandir.cursomc.domain.Categoria;
 import com.souza.evandir.cursomc.domain.Pedido;
-import com.souza.evandir.cursomc.dto.CategoriaDTO;
 import com.souza.evandir.cursomc.services.PedidoService;
 
 @RestController
