@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.souza.evandir.cursomc.domain.Cidade;
 import com.souza.evandir.cursomc.domain.Cliente;
 import com.souza.evandir.cursomc.domain.Endereco;
+import com.souza.evandir.cursomc.domain.enums.Perfil;
 import com.souza.evandir.cursomc.domain.enums.TipoCliente;
 import com.souza.evandir.cursomc.dto.ClienteDTO;
 import com.souza.evandir.cursomc.dto.ClienteNewDTO;
 import com.souza.evandir.cursomc.repositories.ClienteRepository;
 import com.souza.evandir.cursomc.repositories.EnderecoRepository;
+import com.souza.evandir.cursomc.security.UserSS;
+import com.souza.evandir.cursomc.services.exceptions.AuthorizationException;
 import com.souza.evandir.cursomc.services.exceptions.DataIntegrityException;
 import com.souza.evandir.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -36,6 +39,12 @@ public class ClienteService {
 	private BCryptPasswordEncoder pe;
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if (user == null || (!user.hasRole(Perfil.ADMIN) && !id.equals(user.getId()))) {
+			throw new AuthorizationException("Acesso negado!");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
