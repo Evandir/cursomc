@@ -60,5 +60,18 @@ public class AuthService {
 			return 0;
 		}
 	}
+	
+	public void changePassword(String email, String newPass) {
+		
+		Cliente cliente = clienteRepository.findByEmail(email);
+		if (cliente == null) {
+			throw new ObjectNotFoundException("Email não encontrado");
+		}
+		
+		cliente.setSenha(pe.encode(newPass));
+		
+		clienteRepository.save(cliente);
+		emailService.sendNewPasswordEmail(cliente, newPass);
+	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.souza.evandir.cursomc.dto.EmailDTO;
+import com.souza.evandir.cursomc.dto.UserDTO;
 import com.souza.evandir.cursomc.security.JWTUtil;
 import com.souza.evandir.cursomc.security.UserSS;
 import com.souza.evandir.cursomc.services.AuthService;
@@ -37,6 +38,13 @@ public class AuthResource {
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO objDto) {
 		service.sendNewPassword(objDto.getEmail());
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/change", method = RequestMethod.POST)
+	public ResponseEntity<Void> change(@Valid @RequestBody UserDTO objDto) {
+		UserSS user = UserService.authenticated();
+		service.changePassword(user.getUsername(), objDto.getSenha());
 		return ResponseEntity.noContent().build();
 	}
 }
